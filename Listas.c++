@@ -1,46 +1,44 @@
-#include <iostream>
-#include <list>
+#include<iostream>
+#include<conio.h>
 
-int main() {
-    // Crear una lista vacía
-    std::list<int> miLista;
+using namespace std;
 
-    // Agregar elementos a la lista
-    miLista.push_back(10);
-    miLista.push_back(20);
-    miLista.push_back(30);
+struct nodo
+{
+	int dato;
+	nodo*siguiente;
+};
 
-    // Acceder a los elementos de la lista
-    std::cout << "Elementos de la lista: ";
-    for (const auto& elemento : miLista) {
-        std::cout << elemento << " ";
-    }
-    std::cout << std::endl;
+void insertarLista(nodo*&, int);
+int main (){
+	nodo*lista=NULL;
+	int dato;
+	cout<<"Digite un numero: ";
+	cin>>dato;
+	insertarLista(lista, dato);
+	getch();
+	
+		return 0;
+	
+	}
 
-    // Tamaño de la lista
-    std::cout << "Tamaño de la lista: " << miLista.size() << std::endl;
-
-    // Acceder al primer elemento
-    std::cout << "Primer elemento: " << miLista.front() << std::endl;
-
-    // Acceder al último elemento
-    std::cout << "Último elemento: " << miLista.back() << std::endl;
-
-    // Insertar un elemento en una posición específica
-    auto it = miLista.begin();  // Obtener un iterador al inicio de la lista
-    ++it;  // Avanzar el iterador una posición
-    miLista.insert(it, 15);  // Insertar el valor 15 en la posición actual del iterador
-
-    // Eliminar un elemento de la lista
-    miLista.pop_front();  // Eliminar el primer elemento
-    miLista.pop_back();   // Eliminar el último elemento
-
-    // Verificar si la lista está vacía
-    if (miLista.empty()) {
-        std::cout << "La lista está vacía" << std::endl;
-    } else {
-        std::cout << "La lista no está vacía" << std::endl;
-    }
-
-    return 0;
+void insertarLista(nodo*&lista, int n){
+	nodo*nuevo_nodo=new nodo();
+	nuevo_nodo->dato=n;
+	nodo*aux1=lista;
+	nodo*aux2;
+	
+	while((aux1!=NULL) && (aux1->dato < n)){
+		aux2= aux1;
+		aux1=aux1->siguiente;
+		
+	} 	
+	if(lista==aux1){
+		lista=nuevo_nodo;
+	}
+	else{
+		aux2->siguiente=nuevo_nodo;
+	}
+	nuevo_nodo->siguiente=aux1;
+	cout<<"\tElemento"<<n<<"insertado a la listacorrectamente\n";
 }
